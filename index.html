@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title> Space UI </title>
+  <link rel="stylesheet" href="./tailwind-main.css">
+  <link rel="stylesheet" href="./tail-style.css">
+  <link rel="stylesheet" href="./main.css">
+</head>
+
+<body class="valera-round">
+  <div id="app">
+
+    <button class="float-right text-blue-light"  @click="calender_days_modal = true">Select Date of Birth</button>
+
+    <calender-days-modal v-if="calender_days_modal" @close="calender_days_modal = false">
+        <h3 slot="header">January 2019</h3>
+     </calender-days-modal>
+
+  </div>
+</body>
+
+<style>
+
+table {
+  border-collapse: collapse;
+}
+
+.cal_dotw {
+  border-bottom: 0.5px solid black;
+  margin-bottom: 10px;
+}
+
+.days_diff_month {
+  color: darkgrey;
+}
+
+table tr td {
+  text-align: center;
+  padding: 10px 14px;
+  margin: 0.5px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+table tr td:hover {
+  color: white;
+  background-color: orange;
+  transition: all 0.3s ease;
+}
+
+</style>
+
+<script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+<script src="./components/js/vue-modals.js"> </script>
+<script src="main.js"></script>
+<!-- <script src="./components/js/vue-modals.js"></script> -->
+</html>

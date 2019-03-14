@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+
+    <!--Page Title and Icon-->
+    <title>🐶 Quote Process</title>
+    <link rel="icon" href="img/favicon.png">
+
+    <!--Required Meta Tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!--Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+
+    <!--Fonts and Css -->
+    <link href="style.css" type="text/css" rel="stylesheet">
+    <link href="main.css" type="text/css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+
+  </head>
+
+  <body class="bg-grey-lighter overflow-x-hidden p-0 m-0">
+    <div id="app">
+
+    <!--Navbar-->
+    <div class="nav-bar shadow bg-white">
+      <div class="progress-bar bg-grey-darker pt-1"></div>
+      <div class="py-6 px-4 sm:px-6 flex">
+        <button @click="modals.selectDate = true" id="myBtn" class="focus:outline-none">
+          <svg xmlns="http://www.w3.org/2000/svg" width="28" height="20" viewBox="0 0 28 20">
+            <g transform="translate(-16 -21)">
+              <rect class="respond" width="28" height="4" rx="2" transform="translate(16 21)" fill="#75808b"/>
+              <rect class="respond" width="28" height="4" rx="2" transform="translate(16 29)" fill="#75808b"/>
+              <rect class="respond" width="28" height="4" rx="2" transform="translate(16 37)" fill="#75808b"/>
+            </g>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!--Container-->
+    <div class="w-full sm:w-3/5 lg:w-2/5 xl:w-1/4 sm:m-auto">
+
+      <!--Dot-->
+      <div class="flex -mt-12 justify-center">
+        <div class="dot rounded-full h-24 w-24 shadow-inner flex bg-white"></div>
+      </div>
+
+      <!--Headline-->
+      <div class="mx-4 pt-8">
+        <p class="text-center leading-tight sm:text-3xl text-2xl font-semibold text-grey-darkest pb-10">Hi I'm Dot! The Chatbot 🐶<br>What's your name?</p>
+
+        <!--Input Fields-->
+        <input class="block w-full bg-white text-base md:text-xl font-semibold text-grey-darker border border-grey-light rounded-lg py-5 px-4 focus:outline-none focus:bg-white hover:border-grey focus:border-orange mb-4" id="" type="text" placeholder="Name">
+        <input class="block w-full bg-white text-base md:text-xl font-semibold text-grey-darker border border-grey-light rounded-lg py-5 px-4 focus:outline-none focus:bg-white hover:border-grey focus:border-orange mb-8" id="" type="text" placeholder="Surname">
+
+        <!--Button-->
+        <div>
+          <a class="no-underline flex" href="page2.html">
+            <button class="w-64 floating-sm rounded-lg font-bold text-white bg-grey-darker hover:bg-grey-darkest focus:outline-none py-5 mx-auto">NEXT</button>
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <select-date-modal v-if="modals.selectDate" @close="modals.selectDate = false">
+        <div v-if="modals.selectdateProcess.first_step" slot="body" class="grid">
+            <div class="table-grid" 
+            @click="storeDates(year);
+            modals.selectdateProcess.first_step = false; modals.selectdateProcess.second_step = true" 
+            v-for="year in years">
+              {{ year }}
+            </div>
+        </div>
+
+        <div v-if="modals.selectdateProcess.second_step" slot="body" class="grid">
+          <div class="table-grid" 
+          @click="storeDates(month);
+          modals.selectdateProcess.second_step = false; modals.selectdateProcess.third_step = true" 
+          v-for="month in months">
+            {{ month }}
+          </div>
+        </div>
+
+        <div v-if="modals.selectdateProcess.third_step" slot="body" class="grid">
+          <div class="table-grid" 
+          @click="storeDates(day);
+          modals.selectdateProcess.third_step = false; modals.selectdateProcess.check = true" 
+          v-for="day in days">
+            {{ day }}
+          </div>
+        </div>
+
+        <div v-if="modals.selectdateProcess.check" slot="body">
+          <div class="check"> {{ selected_day }} </div>
+          <div class="check"> {{ selected_month }} </div>
+          <div class="check"> {{ selected_year }} </div>
+        </div>
+    </select-date-modal>
+  </body>
+      <!-- JavaScript -->
+
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+      <script src="script.js"></script>
+      <script src="main.js"></script>
+</html>
