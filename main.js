@@ -39,9 +39,15 @@ Vue.component('select-date-modal', {
             </slot>
           </div>
 
-          <div class="modal-footer flex">
+          <div v-if="app.modals.selectdateProcess.check" class="modal-footer flex">
             <slot name="footer">
-            <button v-if="app.modals.check" class="w-64 floating-sm rounded-lg font-bold text-white bg-grey-darker hover:bg-grey-darkest focus:outline-none py-5 mx-auto">ACCEPT</button>
+                <button class="w-1/2 floating-sm rounded-lg font-bold text-white bg-grey-darker hover:bg-grey-darkest focus:outline-none py-4 mx-2">ACCEPT</button>
+                <button  class="w-1/2 floating-sm rounded-lg font-bold border border-grey py-4 mx-2"  @click="
+                $emit('close'); 
+                app.modals.selectdateProcess.first_step = true;
+                app.modals.selectdateProcess.second_step = false;
+                app.modals.selectdateProcess.third_step = false;
+                app.modals.selectdateProcess.check = false;">CANCEL</button>
             </slot>
           </div>
         </div>
@@ -64,7 +70,8 @@ const app = new Vue({
       years: [],
       p_days: [],
       days: [],
-      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      week_days : ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      months: ['January', 'February', 'March', 'April', 'May', 'June', 'July','August', 'September', 'October', 'November', 'December'],
       modals: {
         selectDate: false,
         selectdateProcess: {

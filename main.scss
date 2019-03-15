@@ -2,23 +2,37 @@
 @import "helpers/variables";
 @import "helpers/modal";
 
-.grid {
+%grid {
   display: grid;
-  grid-template-columns: auto auto auto;
   grid-gap: 11px;
-  .table-grid {
-    text-align: center;
-    color: #5A646E;
-    background-color: #EEF0F2;
-    padding: 16px 16px;
-    border-radius: 10px;
-    font-weight: 600;
-    &:hover{
-      background-color: #ff8700;
-      color: #ffffff;
-    } 
-  }
-  .table-grid-days {
+}
 
+%table-grid {
+  text-align: center;
+  color: #5A646E;
+  background-color: #EEF0F2;
+  padding: 20px;
+  border-radius: 10px;
+  font-weight: 600;
+  &:hover{
+    background-color: #ff8700;
+    color: #ffffff;
+  } 
+}
+
+
+.grid {
+  @extend %grid;
+  grid-template-columns: auto auto auto;
+  .table-grid {
+   @extend %table-grid;
   }
+}
+
+.grid-dates {
+  @extend %grid;
+  grid-template-columns: auto auto auto;
+  .table-grid {
+    @extend %table-grid;
+   }
 }

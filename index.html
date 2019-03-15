@@ -82,11 +82,11 @@
           @click="storeDates(month); storeDays(key)
           modals.selectdateProcess.second_step = false; modals.selectdateProcess.third_step = true" 
           v-for="(month, key) in months">
-            {{ month }}
+            {{ month.substring(0,3) }}
           </div>
         </div>
 
-        <div v-if="modals.selectdateProcess.third_step" slot="body" class="grid">
+        <div v-if="modals.selectdateProcess.third_step" slot="body" class="grid-dates">
           <div class="table-grid" 
           @click="storeDates(day);
           modals.selectdateProcess.third_step = false; modals.selectdateProcess.check = true" 

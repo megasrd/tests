@@ -23,7 +23,7 @@
 .modal-body {
   margin: 20px 0 0 0;
   height: fit-content;
-  max-height: 250px;
+  max-height: 350px;
   overflow-y: scroll;
 }
 .modal-body .check {
@@ -71,22 +71,29 @@
   transform: scale(1.1);
 }
 
-.grid {
+.grid-dates, .grid {
   display: grid;
-  grid-template-columns: auto auto auto;
   grid-gap: 11px;
 }
-.grid .table-grid {
+
+.grid-dates .table-grid, .grid .table-grid {
   text-align: center;
   color: #5A646E;
   background-color: #EEF0F2;
-  padding: 16px 16px;
+  padding: 20px;
   border-radius: 10px;
   font-weight: 600;
 }
-.grid .table-grid:hover {
+.grid-dates .table-grid:hover, .grid .table-grid:hover {
   background-color: #ff8700;
   color: #ffffff;
+}
+
+.grid {
+  grid-template-columns: auto auto auto;
+}
+.grid-dates {
+  grid-template-columns: auto auto auto;
 }
 
 /*# sourceMappingURL=main.css.map */
