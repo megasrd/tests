@@ -16,6 +16,7 @@
   .modal-wrapper {
     display: table-cell;
     vertical-align: middle;
+    overflow: hidden;
   }
   
   .modal-container {
@@ -24,7 +25,8 @@
   
   .modal-body {
     margin: 20px 0 0 0;
-    height: 350px;
+    height: fit-content;
+    max-height: 250px;
     overflow-y: scroll;
     .check {
       padding: 1.2rem 0.5rem;
@@ -36,7 +38,12 @@
       color: #5A646E;
     }
   }
-  
+
+  .modal-footer {
+    padding: 1.5rem;
+    text-align: center;
+}
+
   .modal-default-button {
     float: right;
   }

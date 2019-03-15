@@ -79,9 +79,9 @@
 
         <div v-if="modals.selectdateProcess.second_step" slot="body" class="grid">
           <div class="table-grid" 
-          @click="storeDates(month);
+          @click="storeDates(month); storeDays(key)
           modals.selectdateProcess.second_step = false; modals.selectdateProcess.third_step = true" 
-          v-for="month in months">
+          v-for="(month, key) in months">
             {{ month }}
           </div>
         </div>
@@ -90,7 +90,7 @@
           <div class="table-grid" 
           @click="storeDates(day);
           modals.selectdateProcess.third_step = false; modals.selectdateProcess.check = true" 
-          v-for="day in days">
+          v-for="(day, key, index) in days" :key="day.id">
             {{ day }}
           </div>
         </div>

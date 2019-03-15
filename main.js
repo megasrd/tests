@@ -39,8 +39,9 @@ Vue.component('select-date-modal', {
             </slot>
           </div>
 
-          <div class="modal-footer">
+          <div class="modal-footer flex">
             <slot name="footer">
+            <button v-if="app.modals.check" class="w-64 floating-sm rounded-lg font-bold text-white bg-grey-darker hover:bg-grey-darkest focus:outline-none py-5 mx-auto">ACCEPT</button>
             </slot>
           </div>
         </div>
@@ -61,8 +62,9 @@ const app = new Vue({
       selected_month : '',
       selected_year : '',
       years: [],
-      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      p_days: [],
       days: [],
+      months: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul','Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
       modals: {
         selectDate: false,
         selectdateProcess: {
@@ -75,6 +77,12 @@ const app = new Vue({
     },
 
     methods: {
+
+      storeDays : function (month) {
+
+        this.days = this.p_days[month]['amount'];
+
+      },
 
       storeDates : function(date) {
 
@@ -92,8 +100,8 @@ const app = new Vue({
 
     computed: {
 
-      
-  
+
+
     },
 
     mounted: function() {
@@ -108,10 +116,23 @@ const app = new Vue({
         arr.push(this.begin_year + year_difference);
       }
 
-      for (i=1; i < 31; i++) {
-        this.days++;
-      }
+      let month_length = Object.keys(this.months).length;
 
+      let last_day;
+
+      //Calculate days for each month
+
+      for (i=0; i < month_length;i++) {
+        let day_arr = [];
+        last_day = new Date(1995, i + 1, 0).getDate();
+        for (x=1;x<last_day + 1;x++) {
+          day_arr.push(x);
+          this.p_days[i] = {
+            amount : day_arr
+          };
+        }
+      }
+ 
       this.years = arr.reverse();
 
     }
